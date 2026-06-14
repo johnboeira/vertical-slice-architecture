@@ -1,4 +1,3 @@
-using MeetingRoomBooking.Shared.Domain;
 using MeetingRoomBooking.Shared.Domain.Features.Rooms;
 using MeetingRoomBooking.Shared.Persistence;
 using MeetingRoomBooking.Shared.Slices;
@@ -25,17 +24,10 @@ public sealed class DeactivateRoom : ISlice
                     return Results.NotFound();
                 }
 
-                try
-                {
-                    room.Deactivate();
-                    await dbContext.SaveChangesAsync(cancellationToken);
+                room.Deactivate();
+                await dbContext.SaveChangesAsync(cancellationToken);
 
-                    return Results.Ok(RoomStatusDto.From(room));
-                }
-                catch (DomainRuleViolationException exception)
-                {
-                    return Results.Problem(detail: exception.Message, statusCode: StatusCodes.Status400BadRequest);
-                }
+                return Results.Ok(RoomStatusDto.From(room));
             });
     }
 

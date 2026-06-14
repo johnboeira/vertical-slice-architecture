@@ -33,22 +33,22 @@ public sealed class Room : Entity
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            // DomainRuleViolationException("Room name is required.");
+            throw new DomainRuleViolationException("Room name is required.");
         }
 
         if (string.IsNullOrWhiteSpace(unit))
         {
-            // DomainRuleViolationException("Room unit is required.");
+            throw new DomainRuleViolationException("Room unit is required.");
         }
 
         if (string.IsNullOrWhiteSpace(location))
         {
-            // DomainRuleViolationException("Room location is required.");
+            throw new DomainRuleViolationException("Room location is required.");
         }
 
         if (capacity <= 0)
         {
-            // DomainRuleViolationException("Room capacity must be greater than zero.");
+            throw new DomainRuleViolationException("Room capacity must be greater than zero.");
         }
 
         return new Room(
@@ -68,22 +68,22 @@ public sealed class Room : Entity
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            // DomainRuleViolationException("Room name is required.");
+            throw new DomainRuleViolationException("Room name is required.");
         }
 
         if (string.IsNullOrWhiteSpace(unit))
         {
-            // DomainRuleViolationException("Room unit is required.");
+            throw new DomainRuleViolationException("Room unit is required.");
         }
 
         if (string.IsNullOrWhiteSpace(location))
         {
-            // DomainRuleViolationException("Room location is required.");
+            throw new DomainRuleViolationException("Room location is required.");
         }
 
         if (capacity <= 0)
         {
-            // DomainRuleViolationException("Room capacity must be greater than zero.");
+            throw new DomainRuleViolationException("Room capacity must be greater than zero.");
         }
 
         Name = name.Trim();
@@ -97,7 +97,7 @@ public sealed class Room : Entity
     {
         if (IsActive)
         {
-            // DomainRuleViolationException("Only inactive rooms can be activated.");
+            throw new DomainRuleViolationException("Only inactive rooms can be activated.");
         }
 
         IsActive = true;
@@ -107,7 +107,7 @@ public sealed class Room : Entity
     {
         if (!IsActive)
         {
-            // DomainRuleViolationException("Only active rooms can be deactivated.");
+            throw new DomainRuleViolationException("Only active rooms can be deactivated.");
         }
 
         IsActive = false;
@@ -128,7 +128,7 @@ public sealed class Room : Entity
             "whiteboard" or "white-board" => RoomAmenity.Whiteboard,
             "videoconference" or "video-conference" or "video_conference" => RoomAmenity.VideoConference,
             "coffee" => RoomAmenity.Coffee,
-            _ => // DomainRuleViolationException($"Unsupported amenity '{amenity}'.")
+            _ => throw new DomainRuleViolationException($"Unsupported amenity '{amenity}'.")
         };
 }
 

@@ -1,4 +1,3 @@
-using MeetingRoomBooking.Shared.Domain;
 using MeetingRoomBooking.Shared.Domain.Features.Rooms;
 using MeetingRoomBooking.Shared.Persistence;
 using MeetingRoomBooking.Shared.Slices;
@@ -46,22 +45,15 @@ public sealed class UpdateRoom : ISlice
                     });
                 }
 
-                try
-                {
-                    room.Update(
-                        request.Name,
-                        request.Unit,
-                        request.Location,
-                        request.Capacity,
-                        request.Amenities);
+                room.Update(
+                    request.Name,
+                    request.Unit,
+                    request.Location,
+                    request.Capacity,
+                    request.Amenities);
 
-                    await dbContext.SaveChangesAsync(cancellationToken);
-                    return Results.Ok(RoomDetailsDto.From(room));
-                }
-                catch (DomainRuleViolationException exception)
-                {
-                    return Results.Problem(detail: exception.Message, statusCode: StatusCodes.Status400BadRequest);
-                }
+                await dbContext.SaveChangesAsync(cancellationToken);
+                return Results.Ok(RoomDetailsDto.From(room));
             });
     }
 

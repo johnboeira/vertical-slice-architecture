@@ -1,4 +1,3 @@
-using MeetingRoomBooking.Shared.Domain;
 using MeetingRoomBooking.Shared.Domain.Features.Rooms;
 using MeetingRoomBooking.Shared.Persistence;
 using MeetingRoomBooking.Shared.Slices;
@@ -37,24 +36,17 @@ public sealed class CreateRoom : ISlice
                     });
                 }
 
-                try
-                {
-                    var room = Room.Create(
-                        request.Name,
-                        request.Unit,
-                        request.Location,
-                        request.Capacity,
-                        request.Amenities);
+                var room = Room.Create(
+                    request.Name,
+                    request.Unit,
+                    request.Location,
+                    request.Capacity,
+                    request.Amenities);
 
-                    dbContext.Rooms.Add(room);
-                    await dbContext.SaveChangesAsync(cancellationToken);
+                dbContext.Rooms.Add(room);
+                await dbContext.SaveChangesAsync(cancellationToken);
 
-                    return Results.Created($"/api/rooms/{room.Id}", RoomDto.From(room));
-                }
-                catch (DomainRuleViolationException exception)
-                {
-                    return Results.Problem(detail: exception.Message, statusCode: StatusCodes.Status400BadRequest);
-                }
+                return Results.Created($"/api/rooms/{room.Id}", RoomDto.From(room));
             });
     }
 
