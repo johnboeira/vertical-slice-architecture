@@ -1,1 +1,11 @@
-<Solution />
+<Solution>
+  <File Path="Directory.Packages.props" />
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/MeetingRoomBooking.API/MeetingRoomBooking.API.csproj" />
+    <Project Path="src/MeetingRoomBooking/MeetingRoomBooking.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>

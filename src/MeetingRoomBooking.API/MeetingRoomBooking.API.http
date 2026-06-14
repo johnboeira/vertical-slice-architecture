@@ -1,0 +1,40 @@
+@MeetingRoomBooking.API_HostAddress = http://localhost:5085
+
+POST {{MeetingRoomBooking.API_HostAddress}}/api/rooms
+Content-Type: application/json
+
+{
+  "name": "Ocean Room",
+  "unit": "Sao Paulo HQ",
+  "location": "Second Floor",
+  "capacity": 10,
+  "amenities": ["Television", "Whiteboard", "Coffee"]
+}
+
+###
+
+GET {{MeetingRoomBooking.API_HostAddress}}/api/rooms
+Accept: application/json
+
+###
+
+PUT {{MeetingRoomBooking.API_HostAddress}}/api/rooms/{{roomId}}
+Content-Type: application/json
+
+{
+  "name": "Ocean Room Updated",
+  "unit": "Sao Paulo HQ",
+  "location": "Third Floor",
+  "capacity": 12,
+  "amenities": ["Television", "Projector"]
+}
+
+###
+
+POST {{MeetingRoomBooking.API_HostAddress}}/api/rooms/{{roomId}}/activate
+
+###
+
+POST {{MeetingRoomBooking.API_HostAddress}}/api/rooms/{{roomId}}/deactivate
+
+###
