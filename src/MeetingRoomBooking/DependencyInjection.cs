@@ -8,9 +8,7 @@ namespace MeetingRoomBooking;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddMeetingRoomBooking(
-        this IServiceCollection services,
-        IWebHostEnvironment environment)
+    public static IServiceCollection AddMeetingRoomBooking(this IServiceCollection services, IWebHostEnvironment environment)
     {
         var databaseDirectory = Path.Combine(environment.ContentRootPath, "App_Data");
         Directory.CreateDirectory(databaseDirectory);
