@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace MeetingRoomBooking.Shared.Slices;
 
 public static class EndpointRouteBuilderExtensions

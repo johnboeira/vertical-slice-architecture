@@ -1,6 +1,7 @@
 using MeetingRoomBooking.Shared.Domain.Features.Rooms;
 using MeetingRoomBooking.Shared.Persistence;
 using MeetingRoomBooking.Shared.Slices;
+using MeetingRoomBooking.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -12,7 +13,7 @@ public sealed class ActivateRoom : ISlice
 {
     public void AddEndpoint(IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapPost("/api/rooms/{roomId:guid}/activate", async Task<IResult> (Guid roomId, MeetingRoomBookingDbContext dbContext, CancellationToken cancellationToken) =>
+        endpointRouteBuilder.MapPost(ApiEndpoints.Rooms.Activate, async Task<IResult> (Guid roomId, MeetingRoomBookingDbContext dbContext, CancellationToken cancellationToken) =>
             {
                 var room = await dbContext.Rooms.SingleOrDefaultAsync(existingRoom => existingRoom.Id == roomId, cancellationToken);
 
